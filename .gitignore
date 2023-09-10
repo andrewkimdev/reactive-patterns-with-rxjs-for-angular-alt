@@ -1,0 +1,14 @@
+# Mac files
+.DS_Store
+
+# IntelliJ Files
+.idea
+
+# Backend files
+recipes-book-api/node_modules
+recipes-book-api/.vscode
+
+#Frontend files
+recipes-book-front/node_modules
+recipes-book-front/.vscode
+recipes-book-front/.angular
