@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // 3rd Party Vendor Modules
 import { ButtonModule } from 'primeng/button';
@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
+import { RecipesFilterComponent } from './recipes-filter/recipes-filter.component';
 
 // Router Module
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     RecipesListComponent,
     HeaderComponent,
     HomeComponent,
+    RecipesFilterComponent,
   ],
   imports: [
     // Angular Core Modules
@@ -37,6 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
 
     // 3rd Party Vendor Modules
     ButtonModule,
