@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Recipe } from '../model/recipe.model';
 import { environment } from 'src/environments/environment';
@@ -22,6 +22,12 @@ export class RecipesService {
   updateFilter(criteria: Recipe) {
     this.filterRecipeSubject.next(criteria);
   }
+
+  saveRecipe(formValue: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(`${BASE_PATH}/recipes/save`, formValue);
+  }
+
+
 }
 
 
