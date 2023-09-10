@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, shareReplay, timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { Recipe } from '../model/recipe.model';
 import { environment } from 'src/environments/environment';
 
 const BASE_PATH = environment.basePath
 
+const REFRESH_INTERVAL = 50000;
+const timer$ = timer(0, REFRESH_INTERVAL);
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class RecipesService {
-  recipes$ = this.http.get<Recipe[]>(`${ BASE_PATH }/recipes`);
+  recipes$ = this.getRecipesList();
+
   private filterRecipeSubject = new BehaviorSubject<Recipe>({ title: '' });
   filterRecipesAction$ = this.filterRecipeSubject.asObservable();
 
@@ -27,7 +32,23 @@ export class RecipesService {
     return this.http.post<Recipe>(`${BASE_PATH}/recipes/save`, formValue);
   }
 
-
+  private getRecipesList(): Observable<Recipe[]> {
+    if (!this.recipes$) {
+      return timer$.pipe(
+        switchMap(_ => this.http.get<Recipe[]>(`${BASE_PATH}/recipes`)),
+        /**Popular way using shareReplay**/
+        shareReplay(1)
+        /**Recommended way using RxJS7+
+         share({
+         connector : () => new ReplaySubject(),
+         resetOnRefCountZero : true,
+         restOnComplete: true,
+         resetOnError: true
+         }) */
+      );
+    }
+    return this.recipes$;
+  }
 }
 
 
