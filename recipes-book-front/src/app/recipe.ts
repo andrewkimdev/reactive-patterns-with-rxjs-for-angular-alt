@@ -1,3 +1,1 @@
-export interface Recipe {
-
-}
+export interface Recipe { }
