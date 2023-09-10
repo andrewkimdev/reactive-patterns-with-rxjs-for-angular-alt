@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { Recipe } from '../model/recipe.model';
 import { environment } from 'src/environments/environment';
@@ -12,10 +12,16 @@ const BASE_PATH = environment.basePath
 })
 
 export class RecipesService {
-
-  recipes$ = this.http.get<Recipe[]>(`${ BASE_PATH }/recipes`).pipe(
-    catchError(() => of([])));
+  recipes$ = this.http.get<Recipe[]>(`${ BASE_PATH }/recipes`);
+  private filterRecipeSubject = new BehaviorSubject<Recipe>({ title: '' });
+  filterRecipesAction$ = this.filterRecipeSubject.asObservable();
 
   constructor(private http: HttpClient) {
   }
+
+  updateFilter(criteria: Recipe) {
+    this.filterRecipeSubject.next(criteria);
+  }
 }
+
+
