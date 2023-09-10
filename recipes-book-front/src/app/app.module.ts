@@ -11,7 +11,9 @@ import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { MenubarModule } from 'primeng/menubar';
 import { PanelModule } from 'primeng/panel';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { RippleModule } from 'primeng/ripple';
 
@@ -24,6 +26,8 @@ import { RecipesFilterComponent } from './recipes-filter/recipes-filter.componen
 
 // Router Module
 import { AppRoutingModule } from './app-routing.module';
+import { RecipeCreationComponent } from './recipe-creation/recipe-creation.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent,
     HomeComponent,
     RecipesFilterComponent,
+    RecipeCreationComponent,
   ],
   imports: [
     // Angular Core Modules
@@ -47,12 +52,15 @@ import { AppRoutingModule } from './app-routing.module';
     DialogModule,
     DropdownModule,
     InputTextModule,
+    MenubarModule,
     PanelModule,
+    RadioButtonModule,
     RatingModule,
     RippleModule,
 
     // Router Module
-    AppRoutingModule
+    AppRoutingModule,
+     NgbModule
   ],
   bootstrap: [AppComponent]
 })
