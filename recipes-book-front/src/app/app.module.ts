@@ -29,6 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeCreationComponent } from './recipe-creation/recipe-creation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
 
     // Router Module
     AppRoutingModule,
-     NgbModule
+    NgbModule,
+    FileUploadModule
   ],
   bootstrap: [AppComponent]
 })

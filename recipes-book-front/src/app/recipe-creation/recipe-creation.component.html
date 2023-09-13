@@ -1,21 +1,22 @@
-<ng-container *ngIf="valueChanges$ | async"></ng-container>
+<!--<ng-container *ngIf="valueChanges$ | async"></ng-container>-->
 <h1>New Recipe</h1>
-<form [formGroup]="recipeForm" class="container">
-    <div class="row">
-        <div class="col-4">
+<form [formGroup]="recipeForm">
+
+    <div class="form-row">
+        <div class=" col-4">
             <label for="title">Title</label>
-            <input id="title" type="text" name="Title" formControlName="title">
+            <input type="text" name="Title" id="title" formControlName="title">
         </div>
 
-        <div class="col-3">
+        <div class=" col-3">
             <label for="ingredients">Ingredients</label>
-            <input id="Ingredients" type="text" name="Ingredients" formControlName="ingredients">
+            <input type="text" name="Ingredients" id="ingredients" formControlName="ingredients">
         </div>
-        <div class="col">
+        <div class=" col">
             <i class="pi pi-plus" style="padding-top:40px; font-size: 1rem"></i>
         </div>
 
-        <div class="col-4">
+        <div class=" col-4">
             <label>Tags</label>
             <div *ngFor="let tag of tags">
                 <p-radioButton [inputId]="tag.key" [value]="tag" formControlName="tags"></p-radioButton>
@@ -25,45 +26,44 @@
     </div>
 
 
-    <div class="row">
-        <div class="col-4">
-            <label for="image-url">ImageUrl</label>
-            <input id="image-url" type="text" name="imageUrl" formControlName="imageUrl">
-        </div>
+    <div class="form-row">
 
-        <div class="col-3">
-            <label for="cooking-time">CookingTime</label>
-            <input id="cooking-time" type="text" name="cookingTime" formControlName="cookingTime">
-        </div>
-    </div>
-
-
-    <div class="row">
         <div class="col-4">
             <label for="yield">Yield</label>
-            <input id="yield" type="text" name="yield" formControlName="yield">
+            <input type="text" name="yield" id="yield" formControlName="yield">
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
             <label for="prep-time">Preparation Time</label>
-            <input id="prep-time" type="text" name="prepTime" formControlName="prepTime">
+            <input type="text" name="prepTime" id="prep-time" formControlName="prepTime">
+        </div>
+
+        <div class="col-4">
+            <label for="cooking-time">CookingTime</label>
+            <input type="text" name="cookingTime" id="cooking-time" formControlName="cookingTime">
         </div>
     </div>
 
 
-    <div class="row">
+    <div class="form-row">
+
         <div class="col-12">
             <label for="steps">Steps</label>
-            <textarea id="steps" name="steps" formControlName="steps"></textarea>
+            <textarea name="steps" formControlName="steps" id="steps"></textarea>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 d-flex justify-content-end">
-<!--            <div class="right-actions-panel">-->
-                <p-button class="recipe-button" routerLink='' label="Cancel"></p-button>
-                <!-- <p-button class="recipe-button" routerLink='' label="Save"></p-button> -->
-<!--            </div>-->
+
+    <div class="form-row">
+        <div class="col-12">
+            <label>ImageUrl</label>
+            <ng-container *ngIf="uploadRecipeImages$ | async"></ng-container>
+            <p-fileUpload name="imageUrl" [multiple]=true [customUpload]="true" (uploadHandler)="onUpload($event)">
+            </p-fileUpload>
         </div>
     </div>
 </form>
 
+<div class="right-actions-panel">
+    <p-button class="recipe-button" routerLink='' label="Cancel"></p-button>
+    <!-- <p-button class="recipe-button" routerLink='' label="Save"></p-button> -->
+</div>
