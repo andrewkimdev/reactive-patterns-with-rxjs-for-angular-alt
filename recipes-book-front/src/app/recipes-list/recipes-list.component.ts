@@ -4,6 +4,8 @@ import { combineLatest, map } from 'rxjs';
 import { RecipesService } from '../core/services/recipes.service';
 
 import { Recipe } from 'src/app/core/model/recipe.model';
+import { Router } from '@angular/router';
+import { SharedDataService } from '../core/services/shared-data.service';
 
 @Component({
   selector: 'app-recipes-list',
@@ -26,7 +28,11 @@ export class RecipesListComponent implements OnInit {
     return !!recipe.title?.toLowerCase().includes(filterTitle);
   }
 
-  constructor(private service: RecipesService) {
+  constructor(
+    private router: Router,
+    private service: RecipesService,
+    private sharedService: SharedDataService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -41,6 +47,7 @@ export class RecipesListComponent implements OnInit {
   }
 
   editRecipe(recipe: Recipe) {
-    console.log(recipe)
+    this.sharedService.updateSelectedRecipe(recipe);
+    this.router.navigateByUrl('/recipes/details');
   }
 }

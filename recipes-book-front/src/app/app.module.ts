@@ -28,6 +28,7 @@ import { RecipesFilterComponent } from './recipes-filter/recipes-filter.componen
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeCreationComponent } from './recipe-creation/recipe-creation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     RecipesFilterComponent,
     RecipeCreationComponent,
+    RecipeDetailsComponent,
   ],
   imports: [
     // Angular Core Modules
