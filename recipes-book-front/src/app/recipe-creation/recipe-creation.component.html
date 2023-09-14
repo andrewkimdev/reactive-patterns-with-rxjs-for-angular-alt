@@ -1,22 +1,21 @@
 <!--<ng-container *ngIf="valueChanges$ | async"></ng-container>-->
 <h1>New Recipe</h1>
 <form [formGroup]="recipeForm">
-
     <div class="form-row">
-        <div class=" col-4">
+        <div class="col-4">
             <label for="title">Title</label>
             <input type="text" name="Title" id="title" formControlName="title">
         </div>
 
-        <div class=" col-3">
+        <div class="col-3">
             <label for="ingredients">Ingredients</label>
             <input type="text" name="Ingredients" id="ingredients" formControlName="ingredients">
         </div>
-        <div class=" col">
+        <div class="col">
             <i class="pi pi-plus" style="padding-top:40px; font-size: 1rem"></i>
         </div>
 
-        <div class=" col-4">
+        <div class="col-4">
             <label>Tags</label>
             <div *ngFor="let tag of tags">
                 <p-radioButton [inputId]="tag.key" [value]="tag" formControlName="tags"></p-radioButton>
@@ -25,9 +24,7 @@
         </div>
     </div>
 
-
-    <div class="form-row">
-
+    <div class="row">
         <div class="col-4">
             <label for="yield">Yield</label>
             <input type="text" name="yield" id="yield" formControlName="yield">
@@ -44,16 +41,14 @@
         </div>
     </div>
 
-
-    <div class="form-row">
-
+    <div class="row">
         <div class="col-12">
             <label for="steps">Steps</label>
             <textarea name="steps" formControlName="steps" id="steps"></textarea>
         </div>
     </div>
 
-    <div class="form-row">
+    <div class="row">
         <div class="col-12">
             <label>ImageUrl</label>
             <ng-container *ngIf="uploadRecipeImages$ | async"></ng-container>
